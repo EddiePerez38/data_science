@@ -1,74 +1,74 @@
 #!/usr/bin/env python
 # coding: utf-8
 
-# In[1]:
+# In[4]:
 
 
 import seaborn as sns
 get_ipython().run_line_magic('matplotlib', 'inline')
 
 
-# In[2]:
+# In[5]:
 
 
 tips = sns.load_dataset('tips')
 
 
-# In[3]:
+# In[6]:
 
 
 tips.head()
 
 
-# In[5]:
+# In[7]:
 
 
 sns.distplot(tips['total_bill'])
 
 
-# In[6]:
+# In[8]:
 
 
 sns.distplot(tips['total_bill'],kde=False,bins=30)
 
 
-# In[12]:
+# In[9]:
 
 
 sns.jointplot(x='total_bill', y='tip',data=tips,kind='scatter')
 
 
-# In[13]:
+# In[10]:
 
 
 sns.jointplot(x='total_bill',y='tip',data=tips,kind='hex')
 
 
-# In[14]:
+# In[11]:
 
 
 sns.jointplot(x='total_bill',y='tip',data=tips,kind='reg')
 
 
-# In[15]:
+# In[12]:
 
 
 sns.pairplot(tips)
 
 
-# In[17]:
+# In[13]:
 
 
 sns.pairplot(tips,hue='sex',palette='coolwarm')
 
 
-# In[18]:
+# In[14]:
 
 
 sns.rugplot(tips['total_bill'])
 
 
-# In[19]:
+# In[15]:
 
 
 # Don't worry about understanding this code!
@@ -114,7 +114,7 @@ for data_point in dataset:
 plt.ylim(0,1)
 
 
-# In[20]:
+# In[16]:
 
 
 # To get the kde plot we can sum these basis functions.
@@ -135,18 +135,121 @@ plt.yticks([])
 plt.suptitle("Sum of the Basis Functions")
 
 
-# In[21]:
+# In[17]:
 
 
 sns.kdeplot(tips['total_bill'])
 sns.rugplot(tips['total_bill'])
 
 
-# In[22]:
+# In[18]:
 
 
 sns.kdeplot(tips['tip'])
 sns.rugplot(tips['tip'])
+
+
+# In[19]:
+
+
+sns.barplot(x='sex', y='total_bill', data=tips)
+
+
+# In[20]:
+
+
+sns.barplot(x='sex', y='total_bill', data=tips, estimator=np.std)
+
+
+# In[21]:
+
+
+sns.countplot(x='sex', data=tips)
+
+
+# In[22]:
+
+
+sns.boxplot(x='day', y='total_bill', data=tips, palette="rainbow")
+
+
+# In[24]:
+
+
+sns.boxplot(data=tips, palette='rainbow', orient='h')
+
+
+# In[25]:
+
+
+sns.boxplot(x='day', y='total_bill', hue='smoker', data=tips, palette='coolwarm')
+
+
+# In[26]:
+
+
+sns.violinplot(x='day', y='total_bill', data=tips, palette='rainbow')
+
+
+# In[29]:
+
+
+sns.violinplot(x='day', y='total_bill', data=tips, hue='sex',  palette="Set1")
+
+
+# In[30]:
+
+
+sns.violinplot(x='day', y='total_bill', data=tips, hue='sex', split=True, palette="Set1")
+
+
+# In[31]:
+
+
+sns.stripplot(x='day', y='total_bill', data=tips)
+
+
+# In[32]:
+
+
+sns.stripplot(x='day', y='total_bill', data=tips, jitter=True)
+
+
+# In[33]:
+
+
+sns.stripplot(x='day', y='total_bill', data=tips, jitter=True, hue='sex', palette='Set1')
+
+
+# In[37]:
+
+
+sns.stripplot(x="day", y="total_bill", data=tips,jitter=True,hue='sex',palette='Set1',dodge=True)
+
+
+# In[38]:
+
+
+sns.swarmplot(x='day', y='total_bill', data=tips)
+
+
+# In[40]:
+
+
+sns.swarmplot(x='day', y='total_bill', data=tips, hue= 'sex', palette='Set1', dodge=True)
+
+
+# In[41]:
+
+
+sns.violinplot(x="tip", y="day", data=tips,palette='rainbow')
+sns.swarmplot(x="tip", y="day", data=tips,color='black',size=3)
+
+
+# In[43]:
+
+
+sns.catplot(x='sex', y='total_bill', data=tips, kind='bar')
 
 
 # In[ ]:
