@@ -252,6 +252,210 @@ sns.swarmplot(x="tip", y="day", data=tips,color='black',size=3)
 sns.catplot(x='sex', y='total_bill', data=tips, kind='bar')
 
 
+# In[45]:
+
+
+flights = sns.load_dataset('flights')
+
+
+# In[47]:
+
+
+tips.head()
+
+
+# In[48]:
+
+
+#Matrix form for correlation data
+tips.corr()
+
+
+# In[49]:
+
+
+sns.heatmap(tips.corr())
+
+
+# In[51]:
+
+
+sns.heatmap(tips.corr(),cmap='coolwarm',annot=True)
+
+
+# In[57]:
+
+
+pvflights = flights.pivot_table(values='passengers', index='month', columns='year')
+sns.heatmap(pvflights)
+
+
+# In[58]:
+
+
+sns.heatmap(pvflights,cmap='magma',linecolor='white',linewidths=1)
+
+
+# In[59]:
+
+
+sns.clustermap(pvflights)
+
+
+# In[60]:
+
+
+#More options to get the information a little clearer like normailization
+sns.clustermap(pvflights,cmap='coolwarm',standard_scale=1)
+
+
+# In[61]:
+
+
+iris = sns.load_dataset('iris')
+
+
+# In[62]:
+
+
+iris.head()
+
+
+# In[63]:
+
+
+#Just the grid
+sns.PairGrid(iris)
+
+
+# In[64]:
+
+
+#Then you map the grid
+g = sns.PairGrid(iris)
+g.map(plt.scatter)
+
+
+# In[68]:
+
+
+# Map to upper,lower, and diagonal
+g = sns.PairGrid(iris)
+g.map_diag(plt.hist)
+g.map_upper(plt.scatter)
+g.map_lower(sns.kdeplot)
+
+
+# In[69]:
+
+
+sns.pairplot(iris)
+
+
+# In[70]:
+
+
+sns.pairplot(iris, hue='species', palette='rainbow')
+
+
+# In[71]:
+
+
+#Just the grid
+g = sns.FacetGrid(tips, col='time', row='smoker')
+
+
+# In[72]:
+
+
+g = sns.FacetGrid(tips, col='time', row='smoker')
+g = g.map(plt.hist, 'total_bill')
+
+
+# In[74]:
+
+
+g = sns.FacetGrid(tips, col='time', row='smoker', hue='sex')
+#Notice how the arguments come after plt.scatter call
+g = g.map(plt.scatter, 'total_bill', 'tip').add_legend()
+
+
+# In[75]:
+
+
+g = sns.JointGrid(x='total_bill', y='tip', data=tips)
+
+
+# In[76]:
+
+
+g = sns.JointGrid(x='total_bill', y='tip', data=tips)
+g = g.plot(sns.regplot, sns.distplot)
+
+
+# In[77]:
+
+
+sns.lmplot(x='total_bill', y='tip', data=tips)
+
+
+# In[78]:
+
+
+sns.lmplot(x='total_bill', y='tip', data=tips, hue='sex')
+
+
+# In[79]:
+
+
+sns.lmplot(x='total_bill', y='tip', data=tips, hue='sex', palette='coolwarm')
+
+
+# In[80]:
+
+
+sns.lmplot(x='total_bill', y='tip', data=tips, hue='sex', palette='coolwarm',
+          markers=['o', 'v'],scatter_kws={'s':100})
+
+
+# In[81]:
+
+
+sns.lmplot(x='total_bill',y='tip',data=tips,col='sex')
+
+
+# In[82]:
+
+
+sns.lmplot(x='total_bill',y='tip',data=tips, row='sex', col='time')
+
+
+# In[83]:
+
+
+sns.lmplot(x='total_bill',y='tip',data=tips,col='day',hue='sex',palette='coolwarm')
+
+
+# In[85]:
+
+
+sns.lmplot(x='total_bill',y='tip',data=tips,col='day',hue='sex',palette='coolwarm',
+          aspect=0.6,height=8)
+
+
+# In[86]:
+
+
+sns.countplot(x='sex', data=tips)
+
+
+# In[91]:
+
+
+sns.set_style('darkgrid')
+sns.countplot(x='sex', data=tips)
+
+
 # In[ ]:
 
 
